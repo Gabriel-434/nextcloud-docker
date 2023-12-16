@@ -39,6 +39,8 @@ services:
   redis:
     image: redis:latest
     restart: always
+    volumes:
+      - redis:/data
 
   collabora:
     image: collabora/code:latest
@@ -53,6 +55,7 @@ services:
 volumes:
   database:
   nextcloud:
+  redis:
 
 
 secrets:
