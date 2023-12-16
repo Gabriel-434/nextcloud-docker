@@ -50,6 +50,7 @@ services:
     environment:
       - password_FILE=/run/secrets/collabora_password
       - username=${COLLABORA_USER}
+      - domain=${COLLABORA_DOMAIN}
       - extra_params=${COLLABORA_EXTRA_PARAMS}
 
 volumes:
