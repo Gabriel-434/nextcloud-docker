@@ -8,12 +8,14 @@ services:
       - ${NEXTCLOUD_PORT}:80
     volumes:
       - nextcloud:/var/www/html
+      - files:/var/www/data
     environment:
       - POSTGRES_HOST=database
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password
       - REDIS_HOST=redis
+      - NEXTCLOUD_DATA_DIR=/var/www/data
       - NEXTCLOUD_ADMIN_USER=${NEXTCLOUD_ADMIN_USER}
       - NEXTCLOUD_ADMIN_PASSWORD_FILE=/run/secrets/nextcloud_admin_password
       - NEXTCLOUD_TRUSTED_DOMAINS=${NEXTCLOUD_TRUSTED_DOMAINS}
@@ -56,6 +58,9 @@ services:
 volumes:
   database:
   nextcloud:
+  files:
+    external: true
+    name: nextcloud_files
   redis:
 
 
