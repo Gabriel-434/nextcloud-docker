@@ -60,8 +60,8 @@ volumes:
   database:
   nextcloud:
   files:
-    external: true
-    name: nextcloud_files
+    external: ${EXTERNAL_FILES_VOLUME_ENABLED}
+    name: ${EXTERNAL_FILES_VOLUME_NAME}
   redis:
 
 

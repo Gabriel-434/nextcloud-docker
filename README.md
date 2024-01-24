@@ -31,6 +31,16 @@ touch credentials/nextcloud_admin_password.txt
 touch credentials/collabora_password.txt
 ```
 
+If you want to [store files in another server](https://docs.docker.com/storage/volumes/#share-data-between-machines) or [use custom volume drivers](https://docs.docker.com/storage/volumes/#use-a-volume-driver), create the volume manually and set the external volume configuration on the environmental variables file.
+```sh
+# Example external volume using a nfs share
+docker volume create --driver "local" \
+  --opt "type=nfs" \
+  --opt "o=addr=<NFS SHARE HOST OR IP>,rw" \
+  --opt "device=:<NFS SHARE STORAGE DIRECTORY>" \
+  <VOLUME NAME>
+```
+
 Pull and start the containers in the [Docker Compose file](docker-compose.yml).
 ```sh
 docker compose pull
