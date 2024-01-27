@@ -6,6 +6,7 @@ on:
     paths:
       - "Dockerfile"
       - "hooks/**/*"
+      - ".github/workflows/build-image.yml"
 
 jobs:
   push_to_registry:
