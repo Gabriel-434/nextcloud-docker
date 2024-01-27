@@ -1,0 +1,48 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build image",
+            "detail": "Build the Docker image",
+            "type": "shell",
+            "command": "docker",
+            "args": [
+                "compose",
+                "build"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Start containers",
+            "detail": "Create and start the containers",
+            "type": "shell",
+            "command": "docker",
+            "args": [
+                "compose",
+                "up",
+                "--detach"
+            ],
+            "problemMatcher": []    
+        },
+        {
+            "label": "Show logs",
+            "detail": "Show the output of the containers",
+            "type": "shell",
+            "command": "docker",
+            "args": [
+                "compose",
+                "logs",
+                "--follow",
+                "--tail",
+                "1000"
+            ],
+            "problemMatcher": []
+        },
+    ]
+}
