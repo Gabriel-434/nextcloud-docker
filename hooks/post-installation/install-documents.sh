@@ -2,4 +2,10 @@
 
 php occ app:install richdocuments
 
-php occ rich:setup --wopi-url "http://collabora:9980" --callback-url "http://nextcloud:80"
+if [ "$COLLABORA_SSL" = true ]; then
+    COLLABORA_PROTOCOL="https"
+else
+    COLLABORA_PROTOCOL="http"
+fi
+
+php occ rich:setup --wopi-url "$COLLABORA_PROTOCOL://collabora:9980" --callback-url "http://nextcloud:80"
