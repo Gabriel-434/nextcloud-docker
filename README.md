@@ -10,6 +10,10 @@
 ## Why?
 Well, I used deploying Nextcloud as an excuse (there is already an [official image](https://github.com/nextcloud/all-in-one)) to familiarize myself more with [Docker Compose](https://docs.docker.com/compose/) and its best practices.
 
+> [!WARNING]
+> This deployment strategy and [the opitionated image](https://hub.docker.com/repository/docker/gabriel434/nextcloud/general) are not officially supported by Nextcloud GmbH.
+> Use at your own risk!
+
 
 ## Seamless Deployment
 Copy the [dot env file template](.env.example) and populate it.
