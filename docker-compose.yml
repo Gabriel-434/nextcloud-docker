@@ -14,7 +14,7 @@ services:
       - POSTGRES_HOST=database
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password
+      - POSTGRES_PASSWORD_FILE=/run/secrets/nextcloud_database_password
       - REDIS_HOST=redis
       - NEXTCLOUD_DATA_DIR=/var/www/data
       - NEXTCLOUD_ADMIN_USER=${NEXTCLOUD_ADMIN_USER}
@@ -25,7 +25,7 @@ services:
       - database
       - redis
     secrets:
-      - postgres_password
+      - nextcloud_database_password
       - nextcloud_admin_password
 
   database:
@@ -36,9 +36,9 @@ services:
     environment:
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password
+      - POSTGRES_PASSWORD_FILE=/run/secrets/nextcloud_database_password
     secrets:
-      - postgres_password
+      - nextcloud_database_password
 
   redis:
     image: redis:latest
@@ -52,10 +52,12 @@ services:
     ports:
       - ${COLLABORA_PORT}:9980
     environment:
-      - password_FILE=/run/secrets/collabora_password
+      - password_FILE=/run/secrets/nextcloud_collabora_password
       - username=${COLLABORA_USER}
       - server_name=${COLLABORA_DOMAIN}:${COLLABORA_PORT}
       - extra_params=-o:ssl.enable=${COLLABORA_SSL} ${COLLABORA_EXTRA_PARAMS}
+    secrets:
+      - nextcloud_collabora_password
 
 volumes:
   database:
@@ -69,7 +71,7 @@ volumes:
 secrets:
   nextcloud_admin_password:
     file: ./credentials/nextcloud_admin_password.txt
-  postgres_password:
-    file: ./credentials/postgres_password.txt
-  collabora_password:
-    file: ./credentials/collabora_password.txt
+  nextcloud_database_password:
+    file: ./credentials/nextcloud_database_password.txt
+  nextcloud_collabora_password:
+    file: ./credentials/nextcloud_collabora_password.txt
